@@ -10,7 +10,7 @@ export default function Home() {
         <section className="container mx-auto text-center">
           <h1 className="text-5xl font-bold mb-4">Welcome to My Website</h1>
           <p className="text-lg mb-6">
-            Hi! I'm Joshua-Jaye Chan, a Computer Science major passionate about game development! I'm currently learning HTML, CSS, React, Next.js, and other web development languages and frameworks.
+            Hi! I&#39;m Joshua-Jaye Chan, a Computer Science major passionate about game development! I&#39;m currently learning HTML, CSS, React, Next.js, and other web development languages and frameworks.
           </p>
           <p>Check out my projects and feel free to reach out through the contact page!</p>
 
