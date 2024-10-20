@@ -1,20 +1,45 @@
+import Image from "next/image";
+
 export default function Navbar() {
   return (
-    <nav className="bg-[#8CCCCC] p-4 text-[#002366]">
-      <div className="container mx-auto flex justify-between">
-        <h1 className="text-2xl font-bold">My Website</h1>
+    <nav className="bg-[#8CCCCC] text-[#002366]">
+      <div className="container mx-auto flex justify-between items-center">
+        <a href="/" className="flex items-center">
+          <Image
+            src="/icons/transparent-home-icon.png" // Path to the home icon
+            alt="Home"
+            width={75} // Adjust the size as needed
+            height={75} // Adjust the size as needed
+          />
+        </a>
+
         <ul className="flex gap-6">
           <li>
-            <a href="#" className="hover:text-gray-300 font-semibold">About</a>
+            <a href="#">
+              <button className="relative group opacity-90 bg-[#002366] text-white font-semibold py-2 px-4 rounded transition-opacity duration-300 ease-in-out hover:opacity-100">
+                About
+                <span className="loading-bar"></span>
+              </button>
+            </a>
           </li>
           <li>
-            <a href="#" className="hover:text-gray-300 font-semibold">Projects</a>
+            <a href="#">
+              <button className="relative group opacity-90 bg-[#002366] text-white font-semibold py-2 px-4 rounded transition-opacity duration-300 ease-in-out hover:opacity-100">
+                Projects
+                <span className="loading-bar"></span>
+              </button>
+            </a>
           </li>
           <li>
-            <a href="#" className="hover:text-gray-300 font-semibold">Contact</a>
+            <a href="#">
+              <button className="relative group opacity-90 bg-[#002366] text-white font-semibold py-2 px-4 rounded transition-opacity duration-300 ease-in-out hover:opacity-100">
+                Contact
+                <span className="loading-bar"></span>
+              </button>
+            </a>
           </li>
         </ul>
-      </div>
+      </div> {/* This is the missing closing div */}
     </nav>
   );
 }

@@ -1,6 +1,7 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap');
 
 :root {
   --background: #ffffff;
@@ -15,9 +16,12 @@
 }
 
 body {
-  color: var(--foreground);
-  background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
+  background-image: url("/icons/ocean_waves.jpg") !important;
+  background-size: cover; /* Ensures the image covers the entire background */
+  background-repeat: no-repeat; /* Prevents the image from repeating */
+  background-attachment: fixed; /* Keeps the background image fixed in place */
+  background-position: center; /* Centers the image */
+  color: var(--foreground); /* Ensures your text color remains correct */
 }
 
 @layer utilities {
@@ -25,3 +29,81 @@ body {
     text-wrap: balance;
   }
 }
+
+button {
+  position: relative;
+  overflow: hidden;
+}
+
+button .loading-bar {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: -100%;
+  width: 100%;
+  height: 3px;
+  background-color: #0bc9bf; /* Adjusts the loading bar color */
+  transition: left 0.4s ease-in-out;
+}
+
+button:hover .loading-bar {
+  left: 0;
+}
+
+nav {
+  background-color: rgba(2, 102, 145, 0.2) !important; /* Black background with 70% opacity */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+}
+
+footer {
+  background-color: rgba(0, 0, 0, 0.7) !important; /* Black background with 70% opacity */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+}
+
+nav a, footer a, h1, p {
+  color: #ffffff !important; /* White */
+}
+
+h1, p, a {
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.6); /* Dark shadow behind text */
+}
+
+nav a, footer a {
+  font-weight: bold;
+}
+
+nav, footer {
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+}
+
+.carousel {
+  position: relative;
+  max-width: 50%;
+  margin: auto;
+  overflow: hidden;
+}
+
+.carousel-images img {
+  width: 100%;
+  height: auto;
+}
+
+.carousel-button {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: rgba(0, 0, 0, 0.5);
+  color: white;
+  border: none;
+  padding: 10px;
+  cursor: pointer;
+}
+
+.carousel-button.prev {
+  left: 0;
+}
+
+.carousel-button.next {
+  right: 0;
+}
+
