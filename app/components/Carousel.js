@@ -3,55 +3,68 @@
 import React, { useState, useEffect } from 'react';
 import Image from 'next/image';
 
-const CustomCarousel = () => {
-  const images = [
-    { src: '/icons/jima.jpg', alt: 'Jima' },
-    { src: '/icons/toto.jpg', alt: 'Toto' },
-    { src: '/icons/waterfall.jpg', alt: 'Manoa Falls' },
-  ];
+const images = [
+  { src: '/icons/jima.jpg', alt: 'Jima' },
+  { src: '/icons/toto.jpg', alt: 'Toto' },
+  { src: '/icons/waterfall.jpg', alt: 'Manoa Falls' },
+];
 
+const CustomCarousel = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
 
-  const goToPrevious = () => {
-    const isFirstSlide = currentIndex === 0;
-    const newIndex = isFirstSlide ? images.length - 1 : currentIndex - 1;
-    setCurrentIndex(newIndex);
-  };
+  const goToPrevious = () => setCurrentIndex((prev) => (prev === 0 ? images.length - 1 : prev - 1));
 
-  const goToNext = () => {
-    const isLastSlide = currentIndex === images.length - 1;
-    const newIndex = isLastSlide ? 0 : currentIndex + 1;
-    setCurrentIndex(newIndex);
-  };
+  const goToNext = () => setCurrentIndex((prev) => (prev === images.length - 1 ? 0 : prev + 1));
 
   useEffect(() => {
-    const interval = setInterval(() => {
-      goToNext();
-    }, 3500);
-  
+    const interval = setInterval(goToNext, 3500);
     return () => clearInterval(interval);
   }, []);
 
   return (
-    <div className="carousel" style={{ position: 'relative', width: '500px', height: '300px', overflow: 'hidden' }}>
-      <div className="carousel-images" style={{ position: 'relative', width: '100%', height: '100%' }}>
-        <Image
-          src={images[currentIndex].src}
-          alt={images[currentIndex].alt}
-          layout="fill"
-          objectFit="cover"  // Ensures the image covers the whole container
-        />
-        <button className="carousel-button prev" onClick={goToPrevious}>
-            &#10094;
-        </button>
-        <button className="carousel-button next" onClick={goToNext}>
-            &#10095;
-        </button>
+    <div className="relative w-[500px] h-[300px] overflow-hidden rounded-xl shadow-lg">
+      <div
+        className="w-full h-full transition-transform duration-700 ease-in-out"
+        style={{ transform: `translateX(-${currentIndex * 100}%)` }}
+      >
+        <div className="flex">
+          {images.map((image, index) => (
+            <div key={index} className="min-w-full h-full relative">
+              <Image src={image.src} alt={image.alt} layout="fill" objectFit="cover" />
+            </div>
+          ))}
+        </div>
+      </div>
+
+      {/* Navigation Buttons */}
+      <button
+        className="absolute top-1/2 left-4 transform -translate-y-1/2 bg-gray-800 text-white p-2 rounded-full hover:bg-gray-600"
+        onClick={goToPrevious}
+        aria-label="Previous slide"
+      >
+        &#10094;
+      </button>
+      <button
+        className="absolute top-1/2 right-4 transform -translate-y-1/2 bg-gray-800 text-white p-2 rounded-full hover:bg-gray-600"
+        onClick={goToNext}
+        aria-label="Next slide"
+      >
+        &#10095;
+      </button>
+
+      {/* Indicator Dots */}
+      <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 flex gap-2">
+        {images.map((_, index) => (
+          <button
+            key={index}
+            className={`w-3 h-3 rounded-full ${index === currentIndex ? 'bg-white' : 'bg-gray-400'} hover:bg-gray-200`}
+            onClick={() => setCurrentIndex(index)}
+            aria-label={`Go to slide ${index + 1}`}
+          />
+        ))}
       </div>
     </div>
   );
 };
 
 export default CustomCarousel;
-
-
