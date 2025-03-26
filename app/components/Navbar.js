@@ -2,7 +2,7 @@ import Image from "next/image";
 
 export default function Navbar() {
   return (
-    <nav className="bg-[#8CCCCC] text-[#002366]">
+    <nav className="">
       <div className="container mx-auto flex justify-between items-center">
         <a href="/" className="flex items-center">
           <Image
